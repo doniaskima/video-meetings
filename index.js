@@ -1,11 +1,13 @@
 // import section
 require("dotenv").config();
+require("express-async-errors");
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
 const app = express();
+
 
 //DB connection
 mongoose.connect(process.env.MONGO_DB_URI);
