@@ -7,16 +7,12 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const compression = require("compression");
 const app = express();
+const connectDB = require('./config/db');
 
 
 //DB connection
-mongoose.connect(process.env.MONGO_DB_URI);
-mongoose.connection.on("connected", () => {
-    console.log("DB connected");
-});
-mongoose.connection.on("error", (err) => {
-    console.log("mongodb failed with", err);
-});
+
+connectDB();
 
 //import routes
 
