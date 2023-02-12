@@ -19,7 +19,6 @@ exports.joinRoom = async(req, res) => {
     if (!doc) {
         throw new ErrorHandler(404, `Room ${roomName} does not exists`);
     }
-
     const token = generateNewToken({
         room: roomName,
         identity,
