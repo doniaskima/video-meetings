@@ -7,11 +7,9 @@ exports.joinRoom = async(req, res) => {
     if (!req.body.roomName) {
         throw new ErrorHandler(422, "Room name is required");
     }
-
     if (!req.body.identity) {
         throw new ErrorHandler(422, "Identity is required");
     }
-
     const { roomName, identity } = req.body;
 
     const doc = await Room.findOne({ name: roomName }).exec();
