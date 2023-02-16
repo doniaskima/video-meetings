@@ -80,11 +80,8 @@ exports.initialize = function(server) {
 
             socket.on("JOIN_ROOM", () => {
                 debug(`JOIN_ROOM ${user.room} triggered for ${user.identity}`);
-
                 socket.join(user.room);
-
                 const newUser = { socketId: socket.id, identity: user.identity };
-
                 if (ROOMS.has(user.room)) {
                     ROOMS.set(user.room, [...ROOMS.get(user.room), newUser]);
                 } else {
