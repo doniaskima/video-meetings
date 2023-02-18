@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import styles from 'components/Loading.module.css';
 
 const Loading = () => {
-  return (
-    <div>Loading</div>
-  )
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.loading}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    )
 }
 
 export default Loading
