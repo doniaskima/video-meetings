@@ -9,9 +9,10 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <div className="App">
-     <Routes>
+      <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
