@@ -11,6 +11,26 @@ const RoomForm = () => {
     const [identity, setIdentity] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const toggleEnterRoom = () => {
+        setCreateRoom((prevState) => !prevState);
+        setError(null);
+    }
+
+    const handleRoomNameChange = (e) => {
+        setRoomName(e.target.value);
+        if (error && error.roomName) {
+            setError((e) => ({ ...e, roomName: '' }));
+        }
+    }
+
+    const handleIdentityChange = (e) => {
+        setIdentity(e.target.value);
+        if (error && error.identity) {
+            setError((e) => ({ ...e, identity: '' }));
+        }
+    }
+
     return (
         <>
             {
@@ -46,6 +66,7 @@ const RoomForm = () => {
                         Display name:
                     </label>
                     <input
+                        onChange={handleIdentityChange}
                         disabled={loading}
                         value={identity}
                         className={`w-full rounded py-2 px-4 bg-gray-100 border focus:outline-none focus:shadow-outline ${error && error.identity ? 'border-red-500' : 'border-gray-300'
@@ -65,6 +86,7 @@ const RoomForm = () => {
                         Room name
                     </label>
                     <input
+                        onChange={handleRoomNameChange}
                         disabled={loading}
                         value={roomName}
                         className={`w-full rounded bg-gray-100 border py-2 px-4 focus:outline-none focus:shadow online ${error && error.roomName ? 'border-red-500' : 'border-gray-300'}`}
@@ -90,6 +112,7 @@ const RoomForm = () => {
                     <button
                         type="button"
                         disabled={loading}
+                        onClick={toggleEnterRoom}
                         className="text-blue-500 font-medium hover:text-blue-400 focus:outline-none focus:text-blue-600"
                     >
                         {createRoom ? 'Join the room instead' : 'Create the room'}
