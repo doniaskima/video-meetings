@@ -83,6 +83,18 @@ const RoomForm = () => {
                         {createRoom ? 'create a room' : 'Join a room'}
                     </button>
                 </form>
+                <div className="text-center mt-4">
+                    <p>
+                        {createRoom ? 'Already know a room name ?' : 'Want to create a new room'}
+                    </p>
+                    <button
+                        type="button"
+                        disabled={loading}
+                        className="text-blue-500 font-medium hover:text-blue-400 focus:outline-none focus:text-blue-600"
+                    >
+                        {createRoom ? 'Join the room instead' : 'Create the room'}
+                    </button>
+                </div>
             </div>
             <div>
 
