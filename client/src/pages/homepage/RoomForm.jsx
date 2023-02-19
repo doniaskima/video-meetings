@@ -6,6 +6,7 @@ import useRoom from "../../hooks/useRoom";
 import * as roomClient from '../../utils/room-client';
 
 const RoomForm = () => {
+
     const { state, dispatch } = useRoom();
     const [createRoom, setCreateRoom] = useState(!state?.roomName);
     const [roomName, setRoomName] = useState(state?.roomName || '');
@@ -46,6 +47,16 @@ const RoomForm = () => {
         setError(null);
 
         const submit = createRoom ? roomClient.createRoom : roomClient.joinRoom;
+
+        submit({ roomName, identity })
+            .then((res) => {
+                dispatch({ type: 'join_room', identity, roomName, token: res.token });
+
+            })
+            .catch((err) => {
+                setError(err);
+                setLoading(false);
+            });
     }
 
     return (
