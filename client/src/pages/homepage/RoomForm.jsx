@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import urlify from '../../utils/urlify';
 import Loading from "../../components/Loading";
 import useRoom from "../../hooks/useRoom";
+import * as roomClient from '../../utils/room-client';
 
 const RoomForm = () => {
     const { state, dispatch } = useRoom();
@@ -29,6 +30,22 @@ const RoomForm = () => {
         if (error && error.identity) {
             setError((e) => ({ ...e, identity: '' }));
         }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!roomName || !identity) {
+            return setError((e) => ({
+                ...e,
+                ...(!roomName ? { roomName: 'Room name is required' } : null),
+                ...(!identity ? { identity: 'Display name is required' } : null),
+            }));
+        }
+
+        setLoading(true);
+        setError(null);
+
+        const submit = createRoom ? roomClient.createRoom : roomClient.joinRoom;
     }
 
     return (
