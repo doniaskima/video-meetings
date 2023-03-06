@@ -6,7 +6,6 @@ import useRoom from "../../hooks/useRoom";
 import * as roomClient from '../../utils/room-client';
 
 const RoomForm = () => {
-
     const { state, dispatch } = useRoom();
     const [createRoom, setCreateRoom] = useState(!state?.roomName);
     const [roomName, setRoomName] = useState(state?.roomName || '');
@@ -58,7 +57,6 @@ const RoomForm = () => {
                 setLoading(false);
             });
     }
-
     return (
         <>
             {
@@ -124,7 +122,6 @@ const RoomForm = () => {
                     {error && error.roomName && (
                         <div className="w-full text-sm text-red-500">{error.roomName}</div>
                     )}
-
                     <button
                         type="submit"
                         disabled={loading}
