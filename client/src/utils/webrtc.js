@@ -1,5 +1,15 @@
 import { TWILIO_TOKEN_URL, iceServers } from './config';
 
+
+const iceConfiguration = {
+    iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+    ]
+}
+
+const peerConnection = new RTCPeerConnection(iceConfiguration);
+  
+
 const mediaConstraints = {
   audio: true,
   video: true,
@@ -18,9 +28,9 @@ async function generateNtsToken() {
 export async function getPeerConfiguration() {
   const isProd = process.env.NODE_ENV === 'production';
 
-  const peerConfiguration = {
-    iceServers,
-  };
+ 
+  const peerConfiguration = new RTCPeerConnection(iceConfiguration);
+  
 
   if (isProd) {
     const token = await generateNtsToken().catch((err) => {
