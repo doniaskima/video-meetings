@@ -1,9 +1,9 @@
 import io from "socket.io-client";
-import {SERVER_URL} from "./server_url";
+import {server_url} from "./server_url";
 
 
-export const initialSocket = ()=>{
-    const socket = io(SERVER_URL);
+export const initiateSocket = ()=>{
+    const socket = io(server_url);
     return socket;
 };
 
